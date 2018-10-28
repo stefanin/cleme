@@ -3,7 +3,7 @@ risultato = subprocess.check_output(["netsh", "wlan", "show", "networks", "mode=
 risultato = risultato.decode("ascii") 
 risultato = risultato.replace("\r","")
 ssidScan = risultato.split("\n")
-print ("CLEME wifi scanner r1.0  ")
+print ("CLEME wifi scanner r1.0")
 ssidScan = ssidScan[4:]
 ssids = []
 x = 0
