@@ -1,8 +1,12 @@
+import sys
 import subprocess
 import time
-def scansione():
+def scansione(tipo=0):
 
-        risultato = subprocess.check_output(["netsh", "wlan", "show", "networks", "mode=BSSID"])
+        if tipo==0:
+            risultato = subprocess.check_output(["netsh", "wlan", "show", "networks", "mode=BSSID"])
+        else:
+            risultato = subprocess.check_output(["netsh", "wlan", "show", "network", "mode=BSSID"])
         risultato = risultato.decode("ascii") 
         risultato = risultato.replace("\r","")
         ssidScan = risultato.split("\n")
@@ -22,8 +26,19 @@ def scansione():
                     print(ssidScan[x])
             x += 1
 
-print ("CLEME wifi scanner r1.0")
+print ("CLEME wifi scanner r1.0 ",end="")
+tipo=0
+tempo=30
+if len(sys.argv)>=1:
+    tipo=sys.argv[1]
+    print(" scan your ssid")
+else:
+    print(" scan all ssid")
+
+if len(sys.argv)>2:
+    tempo=int(sys.argv[2])
+
 while True:
-    scansione()
-    time.sleep(30)
+    scansione(tipo)
+    time.sleep(tempo)
     print("_________________________________________________________________________________") 
