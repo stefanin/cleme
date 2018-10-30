@@ -2,29 +2,39 @@ import sys
 import subprocess
 import time
 def scansione(tipo=0):
-
+        wifidown=False
         if tipo==0:
-            risultato = subprocess.check_output(["netsh", "wlan", "show", "networks", "mode=BSSID"])
+            try:
+               risultato = subprocess.check_output(["netsh", "wlan", "show", "networks", "mode=BSSID"])
+            except:
+                wifidown=True
         else:
-            risultato = subprocess.check_output(["netsh", "wlan", "show", "network", "mode=BSSID"])
-        risultato = risultato.decode("ascii") 
-        risultato = risultato.replace("\r","")
-        ssidScan = risultato.split("\n")
-        
-        ssidScan = ssidScan[4:]
-        ssids = []
-        x = 0
+            try:
+               risultato = subprocess.check_output(["netsh", "wlan", "show", "network", "mode=BSSID"])
+            except:
+                wifidown=True
+        if wifidown:
+                print("wifi do not working")
+        else:
 
-        while x < len(ssidScan):
-            if "BSSID" in ssidScan[x]:
-                print(ssidScan[x],end="")
-            else:
+            risultato = risultato.decode("ascii") 
+            risultato = risultato.replace("\r","")
+            ssidScan = risultato.split("\n")
             
-                if "SSID" in ssidScan[x]:
-                    print(ssidScan[x])
-                if "Signal" in ssidScan[x]:
-                    print(ssidScan[x])
-            x += 1
+            ssidScan = ssidScan[4:]
+            ssids = []
+            x = 0
+
+            while x < len(ssidScan):
+                if "BSSID" in ssidScan[x]:
+                    print(ssidScan[x],end="")
+                else:
+                
+                    if "SSID" in ssidScan[x]:
+                        print(ssidScan[x])
+                    if "Signal" in ssidScan[x]:
+                        print(ssidScan[x])
+                x += 1
 
 print ("CLEME wifi scanner r1.0 ",end="")
 tipo=0
