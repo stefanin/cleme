@@ -28,3 +28,13 @@ SSID 10 : Vodafone<br>
     &emsp; BSSID 1                 : 64:59:f8:0c:03:d8         Signal             : 80%<br>
 SSID 11 : DIRECT-97-HP ENVY 5540 series<br>
     &emsp; BSSID 1                 : b0:5a:da:6d:dd:98         Signal             : 31%<br>
+
+Options :
+
+python wifiscan.py action time
+
+action 
+    0 : scan all ssid (default)
+    1 : scan your ssid 
+
+time : time to refresh, 30 second default
