@@ -38,3 +38,12 @@ action
     1 : scan your ssid 
 
 time : time to refresh, 30 second default
+
+clemeSRV
+
+npm install
+node clemeServer.js
+
+cleme_add_log.py
+
+python cleme_add_log.py
