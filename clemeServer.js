@@ -1,3 +1,4 @@
+var cfg = require('./clemeServercfg')
 var express = require('express');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
@@ -8,12 +9,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(logger('dev'));
 
-var db = mysql.createConnection({
-    host: 'localhost',
-    user: 'add',
-    password: '1234567',
-    database: 'pauradb'
-});
+
+var db = mysql.createConnection(cfg.cfg);
 
 /*
 CREATE TABLE `hosts` (
